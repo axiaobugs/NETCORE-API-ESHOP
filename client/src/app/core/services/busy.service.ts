@@ -13,8 +13,8 @@ export class BusyService {
     this.busyRequestCount++;
     this.spinnerService.show(undefined,{
       type:'ball-triangle-path',
-      bdColor:'rgba(255,255,255,0.7)',
-      color:'#333333'
+      bdColor:'rgba(255,255,255,0.6)',
+      color:'#e95420'
     });
   }
 

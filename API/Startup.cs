@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using StackExchange.Redis;
+using StackExchange.Redis.Extensions.Core.Configuration;
+using StackExchange.Redis.Extensions.Newtonsoft;
 
 namespace API
 {
@@ -27,6 +30,11 @@ namespace API
             services.AddControllers();
             services.AddDbContext<StoreContext>(x =>
                             x.UseSqlServer(_configuration["ConnectionString:DefaultConnection"]));
+            services.AddSingleton<IConnectionMultiplexer>(c =>
+            {
+                var config = ConfigurationOptions.Parse(_configuration["Redis"], true);
+                return ConnectionMultiplexer.Connect(config);
+            });
             services.AddApplicationServices();
             services.AddSwaggerDocumentation();
             services.AddCors();
