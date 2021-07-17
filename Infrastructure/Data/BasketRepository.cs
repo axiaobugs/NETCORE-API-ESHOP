@@ -1,10 +1,9 @@
-﻿using System;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Core.Entities;
+﻿using Core.Entities;
 using Core.Interfaces;
 using StackExchange.Redis;
-using StackExchange.Redis.Extensions.Core.Abstractions;
+using System;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace Infrastructure.Data
 {

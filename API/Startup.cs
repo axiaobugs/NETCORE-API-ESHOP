@@ -2,6 +2,7 @@ using API.Extensions;
 using API.Helpers;
 using API.Middleware;
 using Infrastructure.Data;
+using Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -9,8 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StackExchange.Redis;
-using StackExchange.Redis.Extensions.Core.Configuration;
-using StackExchange.Redis.Extensions.Newtonsoft;
 
 namespace API
 {
@@ -30,11 +29,15 @@ namespace API
             services.AddControllers();
             services.AddDbContext<StoreContext>(x =>
                             x.UseSqlServer(_configuration["ConnectionString:DefaultConnection"]));
+            services.AddDbContext<AppIdentityDbContext>(x =>
+                            x.UseSqlServer(_configuration["ConnectionString:IdentityConnection"]));
+            
             services.AddSingleton<IConnectionMultiplexer>(c =>
             {
                 var config = ConfigurationOptions.Parse(_configuration["Redis"], true);
                 return ConnectionMultiplexer.Connect(config);
             });
+            services.AddIdentityServices(_configuration);
             services.AddApplicationServices();
             services.AddSwaggerDocumentation();
             services.AddCors();
@@ -51,6 +54,7 @@ namespace API
                 .AllowAnyMethod()
                 .AllowCredentials()
                 .WithOrigins("http://localhost:4200"));
+            app.UseAuthentication();
             app.UseAuthorization();
             if (env.IsDevelopment())
                 app.UseSwaggerDocumentation();
