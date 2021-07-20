@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Core.Entities.OrderAggregate;
 
 namespace Infrastructure.Data
 {
@@ -46,6 +47,16 @@ namespace Infrastructure.Data
                     foreach (var product in products)
                     {
                         context.Products.Add(product);
+                    }
+                    await context.SaveChangesAsync();
+                }
+                if (!context.DeliveryMethods.Any())
+                {
+                    var dmData = await File.ReadAllTextAsync("H:\\project\\dotnet\\back-end\\skinet\\Infrastructure\\Data\\SeedData\\delivery.json");
+                    var dms = JsonSerializer.Deserialize<List<DeliveryMethod>>(dmData);
+                    foreach (var dm in dms)
+                    {
+                        context.DeliveryMethods.Add(dm);
                     }
                     await context.SaveChangesAsync();
                 }
