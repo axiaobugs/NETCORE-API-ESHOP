@@ -62,14 +62,5 @@ namespace API.Controllers
         {
             return Ok(await _orderService.GetDeliveryMethodAsync());
         }
-
-
-
-        // [HttpDelete("{id}")]
-        // public async Task<ActionResult<bool>> DeleteOrderById(int id)
-        // {
-        //
-        // }
-
     }
 }

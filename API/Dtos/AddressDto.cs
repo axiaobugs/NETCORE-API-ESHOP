@@ -22,5 +22,6 @@ namespace API.Dtos
         [Required]
         public string Post { get; set; }
 
+
     }
 }

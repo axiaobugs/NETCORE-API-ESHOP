@@ -6,6 +6,8 @@ namespace Core.Entities.OrderAggregate
 {
     public class Order :BaseEntity
     {
+
+
         public Order()
         {
         }
@@ -14,8 +16,10 @@ namespace Core.Entities.OrderAggregate
                     Address shipAddress, 
                     DeliveryMethod deliveryMethod, 
                     IReadOnlyList<OrderItem> orderItems, 
-                    decimal subtotal)
+                    decimal subtotal,
+                    string paymentIntentId)
         {
+            PaymentIntentId = paymentIntentId;
             BuyerEmail = buyerEmail;
             ShipAddress = shipAddress;
             DeliveryMethod = deliveryMethod;
