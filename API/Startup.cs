@@ -32,9 +32,9 @@ namespace API
             services.AddControllers();
             services.AddSingleton(new AzureServiceTokenProvider());
             services.AddDbContext<StoreContext>(x=> 
-            x.UseSqlServer(_configuration["ConnectionString:DefaultConnection"]));
+            x.UseSqlServer(_configuration["MallApp"]));
             services.AddDbContext<AppIdentityDbContext>(x =>
-                            x.UseSqlServer(_configuration["ConnectionString:IdentityConnection"]));
+                            x.UseSqlServer(_configuration["MallIdentity"]));
             
             services.AddSingleton<IConnectionMultiplexer>(c =>
             {
