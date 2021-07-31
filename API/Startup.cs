@@ -6,6 +6,7 @@ using Infrastructure.Data;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,8 +30,9 @@ namespace API
         {
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddControllers();
-            services.AddDbContext<StoreContext>(x =>
-                            x.UseSqlServer(_configuration["ConnectionString:DefaultConnection"]));
+            services.AddSingleton(new AzureServiceTokenProvider());
+            services.AddDbContext<StoreContext>(x=> 
+            x.UseSqlServer(_configuration["ConnectionString:DefaultConnection"]));
             services.AddDbContext<AppIdentityDbContext>(x =>
                             x.UseSqlServer(_configuration["ConnectionString:IdentityConnection"]));
             

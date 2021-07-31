@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Infrastructure.Migrations
+namespace Infrastructure.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20210718124528_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20210731053915_MigrationAzure02")]
+    partial class MigrationAzure02
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
