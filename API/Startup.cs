@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using API.Extensions;
 using API.Helpers;
@@ -32,9 +33,9 @@ namespace API
             services.AddControllers();
             services.AddSingleton(new AzureServiceTokenProvider());
             services.AddDbContext<StoreContext>(x=> 
-            x.UseSqlServer(_configuration["ConnectionString__Connection"]));
+            x.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionString__Connection")));
             services.AddDbContext<AppIdentityDbContext>(x =>
-                            x.UseSqlServer(_configuration["ConnectionString__IdentityConnection"]));
+                            x.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionString__IdentityConnection")));
             
             services.AddSingleton<IConnectionMultiplexer>(c =>
             {
