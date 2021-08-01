@@ -53,6 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
+	  <Content Include="Content\**" CopyToPublishDirectory="PreseveNewest" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
