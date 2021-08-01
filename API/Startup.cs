@@ -63,7 +63,7 @@ namespace API
             app.UseCors(x => x.AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials()
-                .WithOrigins("http://localhost:4200"));
+                .WithOrigins("http://localhost:4200", "http://100.68.72.151"));
             app.UseAuthentication();
             app.UseAuthorization();
             if (env.IsDevelopment())
