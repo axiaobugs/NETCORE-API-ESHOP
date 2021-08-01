@@ -5,16 +5,6 @@
     <UserSecretsId>d87c8cdf-b78d-4b18-8cdb-f8c7c755a227</UserSecretsId>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Infrastructure\**" />
-    <Compile Remove="obj\**" />
-    <Content Remove="Infrastructure\**" />
-    <Content Remove="obj\**" />
-    <EmbeddedResource Remove="Infrastructure\**" />
-    <EmbeddedResource Remove="obj\**" />
-    <None Remove="Infrastructure\**" />
-    <None Remove="obj\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Content\images\products\boot-ang1.png" />
@@ -63,6 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
+	<Content Include="Content/**" CopyToPublishDirectory="PreseveNewest" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
