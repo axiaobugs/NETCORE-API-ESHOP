@@ -33,10 +33,9 @@ namespace API
             services.AddControllers();
             services.AddSingleton(new AzureServiceTokenProvider());
             services.AddDbContext<StoreContext>(x=> 
-            x.UseSqlServer(_configuration.GetConnectionString("MallApp")));
+            x.UseSqlServer(_configuration["ConnectionStrings:MallApp"]));
             services.AddDbContext<AppIdentityDbContext>(x =>
-                            x.UseSqlServer(_configuration.GetConnectionString("MallIdentity")));
-            
+                            x.UseSqlServer(_configuration["ConnectionStrings:MallIdentity"]));
             services.AddSingleton<IConnectionMultiplexer>(c =>
             {
                 var config = ConfigurationOptions.Parse(_configuration["Redis"], true);
@@ -58,8 +57,7 @@ namespace API
             app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(
-
-                    Path.Combine(Directory.GetCurrentDirectory(), "Content")),
+                    Path.Combine(env.ContentRootPath, "content")),
                 RequestPath = "/content"
             });
             app.UseCors(x => x.AllowAnyHeader()
