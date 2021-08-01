@@ -33,9 +33,9 @@ namespace API
             services.AddControllers();
             services.AddSingleton(new AzureServiceTokenProvider());
             services.AddDbContext<StoreContext>(x=> 
-            x.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionString__Connection")));
+            x.UseSqlServer(_configuration.GetConnectionString("MallApp")));
             services.AddDbContext<AppIdentityDbContext>(x =>
-                            x.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionString__IdentityConnection")));
+                            x.UseSqlServer(_configuration.GetConnectionString("MallIdentity")));
             
             services.AddSingleton<IConnectionMultiplexer>(c =>
             {
