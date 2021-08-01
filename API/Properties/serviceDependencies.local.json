@@ -1,3 +1,28 @@
 {
-  "dependencies": {}
+  "dependencies": {
+    "mssql2": {
+      "secretStore": "LocalSecretsFile",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/sqlserver-test-net/databases/MallApp",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionString:IdentityConnection"
+    },
+    "mssql1": {
+      "secretStore": "LocalSecretsFile",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/sqlserver-test-net/databases/MallIdentity",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionString:DefaultConnection"
+    },
+    "identityapp1": {
+      "ignored": "true",
+      "suggestion": "true",
+      "type": "identityapp",
+      "connectionId": ""
+    },
+    "appInsights1": {
+      "ignored": "true",
+      "suggestion": "true",
+      "type": "appInsights",
+      "connectionId": ""
+    }
+  }
 }

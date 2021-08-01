@@ -26,15 +26,15 @@ namespace API
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services,IWebHostEnvironment env)
         {
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddControllers();
             services.AddSingleton(new AzureServiceTokenProvider());
             services.AddDbContext<StoreContext>(x=> 
-            x.UseSqlServer(_configuration["MallApp"]));
+            x.UseSqlServer(_configuration["ConnectionString__Connection"]));
             services.AddDbContext<AppIdentityDbContext>(x =>
-                            x.UseSqlServer(_configuration["MallIdentity"]));
+                            x.UseSqlServer(_configuration["ConnectionString__IdentityConnection"]));
             
             services.AddSingleton<IConnectionMultiplexer>(c =>
             {
